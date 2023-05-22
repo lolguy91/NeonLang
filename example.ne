@@ -1,3 +1,5 @@
 void main(){
-printf("Asshole");
-};
+    var loosetyped;
+    int strongtyped;
+    printf("Assne");
+}
