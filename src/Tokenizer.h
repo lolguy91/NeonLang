@@ -2,7 +2,11 @@
 #ifndef __PARSER_H__
 #define __PARSER_H__
 #include <stdio.h>
+#include <ctype.h>
 
+#define TYPE_KEYWORD 1
+#define TYPE_INT_LIT 2
+#define TYPE_SEMI    3
 
 
 typedef struct {
@@ -12,9 +16,9 @@ typedef struct {
     int val;
 
     void* next;
-} word;
+} Token;
 
-word* parse(FILE* fp);
+Token* tokenize(FILE* fp);
 
 
 #endif // __PARSER_H__
