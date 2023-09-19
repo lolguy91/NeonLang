@@ -14,9 +14,16 @@ int main(int argc, char *argv[]){
 	    printf("File not found\n");
 	}
 	
+	
 	Token* parsed = (Token*) tokenize(fp);
 	while (parsed->next != 0){
-		printf("-%i--%i--\n",parsed->type,parsed->val);	
+		if(parsed->type == TYPE_KEYWORD){
+			printf(" %s - %s\n",names[parsed->type],keyTokens[parsed->val]);	
+		//}else if(parsed->type == TYPE_IDENT){
+		//	printf(" %s - %s\n",names[parsed->type],*((char**)&parsed->val));	
+		}else{
+			printf(" %s - %i\n",names[parsed->type],parsed->val);	
+		}
 		parsed = parsed->next;
 	}
 	printf("-%i--%i--\n",parsed->type,parsed->val);	
