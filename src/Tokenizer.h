@@ -1,6 +1,6 @@
 
-#ifndef __PARSER_H__
-#define __PARSER_H__
+#ifndef __TOKENIZER_H__
+#define __TOKENIZER_H__
 #include <stdio.h>
 #include <ctype.h>
 
@@ -25,17 +25,17 @@
 #define TYPE_DECIMAL_POINT    18
 
 
-typedef struct {
+struct Token{
     void* prev;
 
     char type;
     int val;
 
     void* next;
-} Token;
+};
 
-Token* tokenize(FILE* fp);
+struct Token* tokenize(FILE* fp);
 extern char* keyTokens[];
 extern char* names[];
 
-#endif // __PARSER_H__
+#endif // __TOKENIZER_H__

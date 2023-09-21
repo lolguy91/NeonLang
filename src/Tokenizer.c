@@ -45,163 +45,163 @@ char* names[] = {
 "TYPE_DECIMAL_POINT"
 };
 
-bool keyword_check(Token* currToken,char* buffer){
+bool keyword_check(struct Token* currToken,char* buffer){
     for (int i = 0; i < (sizeof(keyTokens) / sizeof(char*)); i++)
     {
 	    if(!strcmp(keyTokens[i],buffer)){
-            ((Token*)currToken->next)->type = TYPE_KEYWORD;
-            ((Token*)currToken->next)->val = i;
+            ((struct Token*)currToken->next)->type = TYPE_KEYWORD;
+            ((struct Token*)currToken->next)->val = i;
             return true;
         }
     }
     return false;
 }
-bool misc_check(Token* currToken,char* buffer,int i){
+bool misc_check(struct Token* currToken,char* buffer,int i){
     bool val = false;
     if (buffer[i] == ';')
     {
-        ((Token*)currToken->next)->type = TYPE_SEMI;
-        ((Token*)currToken->next)->val = 1;
+        ((struct Token*)currToken->next)->type = TYPE_SEMI;
+        ((struct Token*)currToken->next)->val = 1;
 
         val = true;
     }
     if (buffer[i] == '=')
     {
-        ((Token*)currToken->next)->type = TYPE_EQUALS;
-        ((Token*)currToken->next)->val = 1;
+        ((struct Token*)currToken->next)->type = TYPE_EQUALS;
+        ((struct Token*)currToken->next)->val = 1;
         val = true;
     }
     if (buffer[i] == ',')
     {
-        ((Token*)currToken->next)->type = TYPE_SEPARATOR;
-        ((Token*)currToken->next)->val = 1;
+        ((struct Token*)currToken->next)->type = TYPE_SEPARATOR;
+        ((struct Token*)currToken->next)->val = 1;
         val = true;
     }
     if (buffer[i] == '.')
     {
-        ((Token*)currToken->next)->type = TYPE_DECIMAL_POINT;
-        ((Token*)currToken->next)->val = 1;
+        ((struct Token*)currToken->next)->type = TYPE_DECIMAL_POINT;
+        ((struct Token*)currToken->next)->val = 1;
         val = true;
     }
     return val;
 }
-bool logic_check(Token* currToken,char* buffer,int i){
+bool logic_check(struct Token* currToken,char* buffer,int i){
     bool val = false;
     if (buffer[i] == '&')
     {
-        ((Token*)currToken->next)->type = TYPE_AND;
-        ((Token*)currToken->next)->val = 1;
+        ((struct Token*)currToken->next)->type = TYPE_AND;
+        ((struct Token*)currToken->next)->val = 1;
 
         val = true;
     }
     if (buffer[i] == '|')
     {
-        ((Token*)currToken->next)->type = TYPE_OR;
-        ((Token*)currToken->next)->val = 1;
+        ((struct Token*)currToken->next)->type = TYPE_OR;
+        ((struct Token*)currToken->next)->val = 1;
         val = true;
     }
     if (buffer[i] == '~')
     {
-        ((Token*)currToken->next)->type = TYPE_NOT;
-        ((Token*)currToken->next)->val = 1;
+        ((struct Token*)currToken->next)->type = TYPE_NOT;
+        ((struct Token*)currToken->next)->val = 1;
         val = true;
     }
     if (buffer[i] == '!')
     {
-        ((Token*)currToken->next)->type = TYPE_NOPE;
-        ((Token*)currToken->next)->val = 1;
+        ((struct Token*)currToken->next)->type = TYPE_NOPE;
+        ((struct Token*)currToken->next)->val = 1;
         val = true;
     }
     return val;
 }
-bool arith_check(Token* currToken,char* buffer,int i){
+bool arith_check(struct Token* currToken,char* buffer,int i){
     bool val = false;
     if (buffer[i] == '+')
     {
-        ((Token*)currToken->next)->type = TYPE_ADD;
-        ((Token*)currToken->next)->val = 1;
+        ((struct Token*)currToken->next)->type = TYPE_ADD;
+        ((struct Token*)currToken->next)->val = 1;
 
         val = true;
     }
     if (buffer[i] == '-')
     {
-        ((Token*)currToken->next)->type = TYPE_SUB;
-        ((Token*)currToken->next)->val = 1;
+        ((struct Token*)currToken->next)->type = TYPE_SUB;
+        ((struct Token*)currToken->next)->val = 1;
         val = true;
     }
     if (buffer[i] == '*')
     {
-        ((Token*)currToken->next)->type = TYPE_MUL;
-        ((Token*)currToken->next)->val = 1;
+        ((struct Token*)currToken->next)->type = TYPE_MUL;
+        ((struct Token*)currToken->next)->val = 1;
         val = true;
     }
     if (buffer[i] == '/')
     {
-        ((Token*)currToken->next)->type = TYPE_DIV;
-        ((Token*)currToken->next)->val = 1;
+        ((struct Token*)currToken->next)->type = TYPE_DIV;
+        ((struct Token*)currToken->next)->val = 1;
         val = true;
     }
     if (buffer[i] == '%')
     {
-        ((Token*)currToken->next)->type = TYPE_MOD;
-        ((Token*)currToken->next)->val = 1;
+        ((struct Token*)currToken->next)->type = TYPE_MOD;
+        ((struct Token*)currToken->next)->val = 1;
         val = true;
     }
     return val;
 }
-bool open_and_close_check(Token* currToken,char* buffer,int i){
+bool open_and_close_check(struct Token* currToken,char* buffer,int i){
     bool val = false;
     if (buffer[i] == '(')
     {
-        ((Token*)currToken->next)->type = TYPE_OPEN;
-        ((Token*)currToken->next)->val = 1;
+        ((struct Token*)currToken->next)->type = TYPE_OPEN;
+        ((struct Token*)currToken->next)->val = 1;
 
         val = true;
     }
     if (buffer[i] == '{')
     {
-        ((Token*)currToken->next)->type = TYPE_OPEN;
-        ((Token*)currToken->next)->val = 2;
+        ((struct Token*)currToken->next)->type = TYPE_OPEN;
+        ((struct Token*)currToken->next)->val = 2;
         val = true;
     }
     if (buffer[i] == '[')
     {
-        ((Token*)currToken->next)->type = TYPE_OPEN;
-        ((Token*)currToken->next)->val = 3;
+        ((struct Token*)currToken->next)->type = TYPE_OPEN;
+        ((struct Token*)currToken->next)->val = 3;
         val = true;
     }
     if (buffer[i] == ')')
     {
-        ((Token*)currToken->next)->type = TYPE_CLOSE;
-        ((Token*)currToken->next)->val = 1;
+        ((struct Token*)currToken->next)->type = TYPE_CLOSE;
+        ((struct Token*)currToken->next)->val = 1;
         val = true;
     }
     if (buffer[i] == '}')
     {
-        ((Token*)currToken->next)->type = TYPE_CLOSE;
-        ((Token*)currToken->next)->val = 2;
+        ((struct Token*)currToken->next)->type = TYPE_CLOSE;
+        ((struct Token*)currToken->next)->val = 2;
         val = true;
     }
     if (buffer[i] == ']')
     {
-        ((Token*)currToken->next)->type = TYPE_CLOSE;
-        ((Token*)currToken->next)->val = 3;
+        ((struct Token*)currToken->next)->type = TYPE_CLOSE;
+        ((struct Token*)currToken->next)->val = 3;
         val = true;
     }
     return val;
 }
 
-Token* tokenize(FILE* fp)
+struct Token* tokenize(FILE* fp)
 {
     //create the string buffers
     char *buffer=malloc(1024);
     char *buffer2=malloc(1024);
 
     int fscanout = fscanf(fp,"%s",buffer);
-    Token* currToken = malloc(sizeof(Token));
-    currToken->next = malloc(sizeof(Token));
+    struct Token* currToken = malloc(sizeof(struct Token));
+    currToken->next = malloc(sizeof(struct Token));
     currToken->prev = currToken;
-    Token* firstToken = currToken->next;
+    struct Token* firstToken = currToken->next;
     bool dummy_pervention = false;
 
     while(fscanout != -1){
@@ -216,21 +216,21 @@ Token* tokenize(FILE* fp)
                 buffer2[i + imod + 1] = 0;
 
                 if(isdigit(buffer[i]) && !isdigit(buffer[i+1])){
-                    ((Token*)currToken->next)->type = TYPE_INT_LIT;
-                    ((Token*)currToken->next)->val = atoi(buffer2);
+                    ((struct Token*)currToken->next)->type = TYPE_INT_LIT;
+                    ((struct Token*)currToken->next)->val = atoi(buffer2);
 
-                    ((Token*)currToken->next)->prev = currToken;
+                    ((struct Token*)currToken->next)->prev = currToken;
                     currToken = currToken->next;
-                    currToken->next = malloc(sizeof(Token));
+                    currToken->next = malloc(sizeof(struct Token));
                     dummy_pervention = true;
                     imod -= strlen(buffer2);
 	            }
 
                 if (keyword_check(currToken,buffer2))
                 {
-                    ((Token*)currToken->next)->prev = currToken;
+                    ((struct Token*)currToken->next)->prev = currToken;
                     currToken = currToken->next;
-                    currToken->next = malloc(sizeof(Token));
+                    currToken->next = malloc(sizeof(struct Token));
                     dummy_pervention = true;
                     imod -= strlen(buffer2);
                 }
@@ -240,9 +240,9 @@ Token* tokenize(FILE* fp)
                             logic_check(currToken,buffer,i) ||
                                 misc_check(currToken,buffer,i))
                 {
-                    ((Token*)currToken->next)->prev = currToken;
+                    ((struct Token*)currToken->next)->prev = currToken;
                     currToken = currToken->next;
-                    currToken->next = malloc(sizeof(Token));
+                    currToken->next = malloc(sizeof(struct Token));
                     dummy_pervention = true;
                     imod--;
                 }
@@ -251,15 +251,15 @@ Token* tokenize(FILE* fp)
                 char* copy_of_buffer = malloc(strlen(buffer));
                 memcpy(copy_of_buffer,buffer,strlen(buffer));
 
-                ((Token*)currToken->next)->type = TYPE_IDENT;
-                ((Token*)currToken->next)->val = (int)copy_of_buffer;
+                ((struct Token*)currToken->next)->type = TYPE_IDENT;
+                ((struct Token*)currToken->next)->val = (int)copy_of_buffer;
 
             }
         }
         if(!dummy_pervention){
-            ((Token*)currToken->next)->prev = currToken;
+            ((struct Token*)currToken->next)->prev = currToken;
             currToken = currToken->next;
-            currToken->next = malloc(sizeof(Token));
+            currToken->next = malloc(sizeof(struct Token));
         }
 
         fscanout = fscanf(fp,"%s",buffer);
