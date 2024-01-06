@@ -1,6 +1,8 @@
 #include <Tokenizer.h>
 #include <ctype.h>
 #include <stdbool.h>
+#include <string.h>
+#include <stdlib.h>
 
 char* keyTokens[] = {
 //return
@@ -206,8 +208,6 @@ struct Token* tokenize(FILE* fp)
 
     while(fscanout != -1){
         dummy_pervention = false;
-
-
         if(!keyword_check(currToken,buffer)){
             int imod = 0;
             for (size_t i = 0; i < strlen(buffer); i++)
