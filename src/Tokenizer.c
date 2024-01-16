@@ -4,27 +4,18 @@
 #include <string.h>
 #include <stdlib.h>
 
-char* keyTokens[] = {
-//return
+
+char* baseKeywords[] = {
+"if",
+"else",
+"while",
+"for",
 "return",
-//types
-"u8",
-"u16",
-"u32",
-"u64",
-
-"i8",
-"i16",
-"i32",
-"i64",
-
-"bool",
-"float",
-
-//boolean stuff
-"true",
-"false"
+"break",
+"continue"
 };
+int numKeywords = sizeof(baseKeywords) / sizeof(baseKeywords[0]);
+char** keyTokens;
 char* names[] = {
 "TYPE_INVALID     ",
 "TYPE_KEYWORD     ",
@@ -191,6 +182,20 @@ bool open_and_close_check(struct Token* currToken,char* buffer,int i){
         val = true;
     }
     return val;
+}
+
+void init(){
+    keyTokens = malloc(sizeof(char*)*(numKeywords)));
+    for (size_t i = 0; i < numKeywords; i++)
+    {
+        keyTokens[i] = baseKeywords[i];
+    }
+}
+
+int addKeyword(char* word){
+    keyTokens = realloc(keyTokens,sizeof(char*)*(numKeywords++));
+    keyTokens[numKeywords - 1] = word;
+    return numKeywords - 1;
 }
 
 struct Token* tokenize(FILE* fp)
