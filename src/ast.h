@@ -33,24 +33,24 @@ struct expression{
     uint8_t signature;
     uint8_t type;
     union{
-        struct literal{
+        struct {
             struct identifier data;
-        };
-        struct unary{
+        } literal;
+        struct {
             uint16_t op;
             struct expression* expr;
-        };
-        struct binary{
+        } unary;
+        struct {
             uint16_t op;
             struct expression* left;
             struct expression* right;
-        };
-        struct trinary{
+        } binary;
+        struct {
             uint16_t op;
             struct expression* left;
             struct expression* middle;
             struct expression* right;
-        };
+        } trinary;
     };
 };
 struct scope;

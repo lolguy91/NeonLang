@@ -1,5 +1,5 @@
 #include <Preprocessor.h>
-#include <CompilerState.h>
+#include <compilerState.h>
 
 void preprocess(struct CompilerState* cs){
     // TODO

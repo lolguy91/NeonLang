@@ -1,8 +1,7 @@
 #ifndef CS_H
 #define CS_H
 
-#include <langFeat.h>
-#include <scope.h>
+#include <LangFeat.h>
 #include <Tokenizer.h>
 #include <ast.h>
 

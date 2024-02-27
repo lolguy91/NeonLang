@@ -5,7 +5,7 @@
 #include <stdlib.h>
 
 
-char* baseKeywords[] = {
+char* keyTokens[] = {
 "if",
 "else",
 "while",
@@ -14,8 +14,6 @@ char* baseKeywords[] = {
 "break",
 "continue"
 };
-int numKeywords = sizeof(baseKeywords) / sizeof(baseKeywords[0]);
-char** keyTokens;
 char* names[] = {
 "TYPE_INVALID     ",
 "TYPE_KEYWORD     ",
@@ -182,20 +180,6 @@ bool open_and_close_check(struct Token* currToken,char* buffer,int i){
         val = true;
     }
     return val;
-}
-
-void init(){
-    keyTokens = malloc(sizeof(char*)*(numKeywords)));
-    for (size_t i = 0; i < numKeywords; i++)
-    {
-        keyTokens[i] = baseKeywords[i];
-    }
-}
-
-int addKeyword(char* word){
-    keyTokens = realloc(keyTokens,sizeof(char*)*(numKeywords++));
-    keyTokens[numKeywords - 1] = word;
-    return numKeywords - 1;
 }
 
 struct Token* tokenize(FILE* fp)

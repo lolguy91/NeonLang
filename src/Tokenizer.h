@@ -35,7 +35,7 @@ struct Token{
 };
 
 struct Token* tokenize(FILE* fp);
-extern char* keyTokens[];
+void initTokenizer();
 extern char* names[];
 
 #endif // __TOKENIZER_H__
